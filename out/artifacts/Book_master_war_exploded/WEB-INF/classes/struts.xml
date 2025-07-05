@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" /> 
+	<package name="actions" extends="struts-default" namespace="/">
+		<action name="user_*" method="{1}" class="userAction">
+		    <result name="showFine">/fineList.jsp</result>
+			<result name="showAll">/userList.jsp</result>
+			<result name="addSucceed">/login.jsp</result>
+			<result name="addFailed">/register.jsp</result>
+			<result name="loginSucceed">/index.jsp</result>
+			<result name="loginFailed">/login.jsp</result>
+			<result name="editPass">/editPassword.jsp</result>
+			<result name="logout">/login.jsp</result>
+			<result name="delete" type="redirectAction">
+				<param name="actionName">user_showAll</param>
+			</result>	
+			<allowed-methods>showFine,showAll,add,delete,login,editPass,logout</allowed-methods>
+		</action>
+		
+		<action name="book_*" method="{1}" class="bookAction">
+			<result name="showAll2">/admin_bookList.jsp</result>
+			<result name="add">/addBook.jsp</result>
+			<result name="showByType">/searchbook.jsp</result>
+			<result name="showByKey">/searchbook.jsp</result>
+			<result name="showByHot">/searchbook.jsp</result>
+			<result name="showAll">/user_bookList.jsp</result>
+			<result name="searchBook">/searchbook.jsp</result>
+			<result name="delete" type="redirectAction">
+				<param name="actionName">book_showAll2</param>
+			</result>	
+			<allowed-methods>showAll,add,delete,showAll2,showByType,showByKey,showByHot,findBookInfoById</allowed-methods>
+		</action>
+		
+		<action name="data_*" method="{1}" class="dataAction">
+			<result name="showAll">/givebackList.jsp</result>
+			<result name="showByUser">/givebackList.jsp</result>
+			<result name="showByUserAndRenew">/renew.jsp</result>
+			<result name="add" type="redirectAction">
+				<param name="actionName">data_showByUser</param>
+			</result>
+			<result name="delete" type="redirectAction">
+				<param name="actionName">data_showByUser</param>
+			</result>
+			<result name="delete2" type="redirectAction">
+				<param name="actionName">data_showAll</param>
+			</result>
+			<result name="updateDate" type="redirectAction">
+				<param name="actionName">data_showByUser</param>
+			</result>
+			<allowed-methods>showAll,showByUserAndRenew,add,delete,showByUser,updateDate</allowed-methods>
+		</action>
+	</package>
+</struts>
